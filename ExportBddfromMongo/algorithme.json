@@ -1,0 +1,57 @@
+[{
+  "_id": {
+    "$oid": "62b177f3b6cf730dfa3d1183"
+  },
+  "name": "CNN",
+  "layer": "Log_prediction",
+  "_class": "fr.SII.MongoCRUD.model.Algorithme"
+},{
+  "_id": {
+    "$oid": "62b177f3b6cf730dfa3d1184"
+  },
+  "name": "CNN",
+  "layer": "Anomaly_detection",
+  "_class": "fr.SII.MongoCRUD.model.Algorithme"
+},{
+  "_id": {
+    "$oid": "62b17800b6cf730dfa3d1185"
+  },
+  "name": "LMP",
+  "layer": "Attack_classification",
+  "_class": "fr.SII.MongoCRUD.model.Algorithme"
+},{
+  "_id": {
+    "$oid": "62b17825b6cf730dfa3d1188"
+  },
+  "name": "KNN",
+  "layer": "Log_prediction",
+  "_class": "fr.SII.MongoCRUD.model.Algorithme"
+},{
+  "_id": {
+    "$oid": "62b17825b6cf730dfa3d1187"
+  },
+  "name": "KNN",
+  "layer": "Anomaly_detection",
+  "_class": "fr.SII.MongoCRUD.model.Algorithme"
+},{
+  "_id": {
+    "$oid": "62b17832b6cf730dfa3d1189"
+  },
+  "name": "CNN",
+  "layer": "Attack_classification",
+  "_class": "fr.SII.MongoCRUD.model.Algorithme"
+},{
+  "_id": {
+    "$oid": "62b2d695cbe7f3149de94e54"
+  },
+  "name": "Auto",
+  "layer": "Anomaly_detection",
+  "_class": "fr.SII.MongoCRUD.model.Algorithme"
+},{
+  "_id": {
+    "$oid": "62c28d4359f7e178bfc07a61"
+  },
+  "name": "KOHONEN",
+  "layer": "Attack_classification",
+  "_class": "fr.SII.MongoCRUD.model.Algorithme"
+}]

@@ -1,0 +1,38 @@
+<div class="bg-primary">
+    <div class="container col-md-5 vh-100">
+        <div class="row h-100">
+            <div class="card my-auto shadow">
+                <div class="card-body px-5">
+                    <div class="text-center">
+                        <h2>Welcome</h2>
+                    </div>
+                    <p class="text-secondary text-center mb-3">
+                        Please enter your login details</p>
+                    <div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 text-start mr-3">
+                                <img src="assets/img/logo1.png" alt="logo" width="150">
+                            </div>
+                            <br>
+                            <div class="col-md-7 ml-5">
+                                    <!----->
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" aria-label="Email" [(ngModel)]="email" class="form-control mb-3 ">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" aria-label="Password" [(ngModel)]="password" class="form-control mb-3">
+                                    <button class="btn btn-primary col-md-12 mt-3" (click)="onLogin(email, password)">
+                                        Login</button>
+                                </div>
+                                <div class="bg-danger text-white mt-3 " *ngIf="txt!==''"> {{txt}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer  text-right">
+                    <small><a routerLink="../forgot-password">Forgot Password</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

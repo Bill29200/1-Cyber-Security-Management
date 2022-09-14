@@ -1,0 +1,328 @@
+<!-- Test si l'utilsateur a la permission de gerer les modeles -->
+<div *ngIf="utilisateur.role==='admin'||utilisateur.role==='superadmin'||utilisateur.role==='user'">
+    <!--  -->
+    <!-- Partie des boutons -->
+    <div class="container-fluid">
+        <div class="row ">
+
+            <!-- BUTTONS -->
+            <div class="col-md-5 mt-3">
+                <label class="text-danger">
+                    Total {{getNbModele()}}
+                </label>
+                &nbsp;
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalAddModel">
+                    <i class="fa fa-plus"></i>
+                </button>
+                &nbsp;
+                <button *ngIf="getNbModele()!==0 && utilisateur.role===('superadmin')" class="btn btn-danger "
+                data-bs-toggle="modal" data-bs-target="#deleteAllModelModal">
+                    <i class="fa fa-trash"></i> All <span class="badge badge-light">{{getNbModele()}}</span>
+                </button>
+                &nbsp;
+                <!-- <button *ngIf="utilisateur.role==='superadmin'" class="btn btn-secondary" (click)="ShowModelManager()"
+                    data-bs-toggle="modal" data-bs-target="#ModalModelManager">
+                    <i class="bi bi-gear"></i>
+                </button> -->
+                &nbsp;
+                <button *ngIf="getNbModele()!==0 && utilisateur.role===('superadmin')" class="btn btn-secondary" (click)="print()"> <i class="bi bi-printer"></i></button>
+                &nbsp;
+                <button *ngIf="utilisateur.role==='admin'||utilisateur.role==='superadmin'" class="btn btn-warning "
+                    routerLink="./algorithme">
+                    <i class="fa fas fa-atom"></i> ALGO
+                </button>
+            </div>
+
+            <div class="col-md-1 mt-3">
+                <h5 class="text-center">Models</h5>
+            </div>
+            <div class="col-md-3">
+                <!-- Vide avant rech -->
+            </div>
+            <div class="col-md-2">
+                <!-- RECHERCHE -->
+                <div class="col-md-2 mt-3 ml-1 mr-3">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input type="search" (ngModelChange)="searchModels(key.value)" #key="ngModel" ngModel name="key"
+                            id="searchName" class="form-control mr-sm-2" placeholder="Search models..." required>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <div class="card-body bg-white">
+            <table class="table" id="models">
+                <thead class="table">
+                    <tr>
+                        <th class="bg-light text-center">Nom</th>
+                        <th class="bg-light text-center">Type</th>
+                        <th class="bg-danger text-center">LOG PREDICTION LAYER</th>
+                        <th class="bg-warning text-center">ANOMALY DETECTION LAYER</th>
+                        <th class="bg-primary text-center">ATTACK CLASSIFICATION LAYER</th>
+                        <th class="bg-light text-center"> Creator</th>
+                        <th class="bg-light text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of models | paginate:{itemsPerPage:4,currentPage:page};let i = index;">
+                        <td *ngIf="getCdt(i,'R')" [ngClass]="{'table-secondary':i%2===1}">{{ p?.name }} </td>
+                        <td *ngIf="getCdt(i,'R')" [ngClass]="{'table-secondary':i%2===1}">{{ p?.type }} </td>
+                        <td *ngIf="getCdt(i,'R')" [ngClass]="{'table-danger':i%2===1}"><b>{{ p?.algoc1}} </b> [{{ p?.hpc1 }}] </td>
+                        <td *ngIf="getCdt(i,'R')" [ngClass]="{'table-warning':i%2===1}"><b>{{ p?.algoc2}}</b> [{{ p?.hpc2 }}] </td>
+                        <td *ngIf="getCdt(i,'R')" [ngClass]="{'table-primary':i%2===1}"><b>{{ p?.algoc3}}</b> [{{ p?.hpc3 }}] </td>
+                        <td *ngIf="getCdt(i,'R')" [ngClass]="{'table-secondary':i%2===1}" class="text-start"><img
+                                class="rounded-circle avatar" width="20px" alt="poster" src={{srcAvatar(p)}} />&nbsp; {{p?.user?.name}} </td>
+                        <td *ngIf="getCdt(i,'R')" [ngClass]="{'table-secondary':i%2===1}">
+                            <button *ngIf="getCdt(i,'D')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModelModal" (click)="onChargerModel(p)"> <i
+                                    class="fa fa-trash"></i></button>
+                            &nbsp;
+                            <button *ngIf="getCdt(i,'U')" class="btn btn-primary" (click)="onChargerEditModele(p)" data-bs-toggle="modal"
+                                data-bs-target="#ModalEditModel">
+                                <i class="fa fa-refresh"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="models.length>4" class="card-body">
+        <div class="ml-3">
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+
+    </div>
+
+    <!------------------------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------------------->
+    <!-- ModalAddModel -->
+    <div class="modal fade" id="ModalAddModel" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Add Model</h5>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group col-md-5">
+                        <label for="name">Model name</label>
+                        <input type="text" [(ngModel)]="name" class="form-control" id="name" name="name"
+                            placeholder="Model name" required>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="type">Type</label>
+                        <input type="text" [(ngModel)]="type" class="form-control" id="type" placeholder="Type">
+                    </div>
+
+                    <div class="container-fluid mb-3">
+                        <div class="row">
+                            <div class="col-md-3 table-danger mr-3 ml-3">
+                                <div class="form-group">
+                                    <label for="algoc1">Select algorithme layer1</label>
+                                    <select class="form-select" id="algorithme" name="algoc1" [(ngModel)]="algoc1">
+                                        <option *ngFor="let f of (tablAlgoc1) " [value]="f.name">{{f.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hpc1">Select HP layer1</label>
+                                    <select class="form-select mb-3" name="hpc1" [(ngModel)]="hpc1" required>
+                                        <option>Default</option>
+                                        <option>Optimal</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 table-warning mr-3 ml-3">
+                                <div class="form-group">
+                                    <label for="algoc2">Select algorithme layer2</label>
+                                    <select class="form-select" id="algorithme" name="algoc2" [(ngModel)]="algoc2">
+                                        <option *ngFor="let f of (tablAlgoc2) " [value]="f.name">{{f.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hpc2">Select HP layer2</label>
+                                    <select class="form-select mb-3" name="hpc2" [(ngModel)]="hpc2" required>
+                                        <option>Default</option>
+                                        <option>Optimal</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 table-primary mr-3 ml-3">
+                                <div class="form-group ">
+                                    <label for="algoc3">Select algorithme layer3</label>
+                                    <select class="form-select" id="algorithme" name="algoc3" [(ngModel)]="algoc3">
+                                        <option *ngFor="let f of (tablAlgoc3) " [value]="f.name">{{f.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hpc3">Select HP layer3</label>
+                                    <select class="form-select mb-3" name="hpc3" [(ngModel)]="hpc3" required>
+                                        <option>Default</option>
+                                        <option>Optimal</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="add-Model-form" class="btn btn-secondary"
+                            data-bs-dismiss="modal">X</button>
+                        <button [disabled]="testFormAdd()" class="btn btn-primary" type="submit" (click)="onAddModel()"
+                            data-bs-dismiss="modal"><i class="fa fa-save"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--\ModalAddModel-------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------------------->
+    <!-- ModalEditModel -->
+    <div class="modal fade" id="ModalEditModel" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Edit Model {{editModel?.name}}</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-md-5">
+                        <label for="name">Model name</label>
+                        <input type="text" [(ngModel)]="name" class="form-control" id="name" name="name"
+                            placeholder="Model name" required>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="type">Type</label>
+                        <input type="text" [(ngModel)]="type" class="form-control" id="type" placeholder="Type">
+                    </div>
+
+                    <div class="container-fluid mb-3">
+                        <div class="row">
+                            <div class="col-md-3 table-danger mr-3 ml-3">
+                                <div class="form-group">
+                                    <label for="algoc1">Select algorithme layer1</label>
+                                    <select class="form-select" id="algorithme" name="algoc1" [(ngModel)]="algoc1">
+                                        <option *ngFor="let f of (tablAlgoc1) " [value]="f.name">{{f.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hpc1">Select HP layer1</label>
+                                    <select class="form-select mb-3" name="hpc1" [(ngModel)]="hpc1" required>
+                                        <option>Default</option>
+                                        <option>Optimal</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 table-warning mr-3 ml-3">
+                                <div class="form-group">
+                                    <label for="algoc2">Select algorithme layer2</label>
+                                    <select class="form-select" id="algorithme" name="algoc2" [(ngModel)]="algoc2">
+                                        <option *ngFor="let f of (tablAlgoc2) " [value]="f.name">{{f.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hpc2">Select HP layer2</label>
+                                    <select class="form-select mb-3" name="hpc2" [(ngModel)]="hpc2" required>
+                                        <option>Default</option>
+                                        <option>Optimal</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 table-primary mr-3 ml-3">
+                                <div class="form-group ">
+                                    <label for="algoc3">Select algorithme layer3</label>
+                                    <select class="form-select" id="algorithme" name="algoc3" [(ngModel)]="algoc3">
+                                        <option *ngFor="let f of (tablAlgoc3) " [value]="f.name">{{f.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hpc3">Select HP layer3</label>
+                                    <select class="form-select mb-3" name="hpc3" [(ngModel)]="hpc3" required>
+                                        <option>Default</option>
+                                        <option>Optimal</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="Edit-Model-form" class="btn btn-secondary"
+                            data-bs-dismiss="modal">X</button>
+                        <button [disabled]="testFormAdd()" class="btn btn-primary" type="submit" (click)="onUpdateModel(editModel)"
+                            data-bs-dismiss="modal"><i class="fa fa-save"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--\ModalEditModel-------------------------------------------------------------------------------------------->
+
+    <!------------------------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------------------->
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModelModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModelLabel">Delete Model</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete Model {{deleteModel?.name}}?</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">No</button>
+                        <button (click)="onDeleteModel(deleteModel.id)" class="btn btn-danger" type="submit"
+                        data-bs-dismiss="modal">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------------------------------------------------------------------------------------->
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteAllModelModal" tabindex="-1" role="dialog" aria-labelledby="deleteAllModelLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="deleteAllModelLabel">Delete all Models</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to delete all Models </p>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">No</button>
+                <button (click)="deleteAllModel()" class="btn btn-danger" type="submit"
+                data-bs-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------------------------------------------------------------------->
+<div class=bg-succes *ngIf="utilisateur.role!=='admin'&& utilisateur.role!=='superadmin'&& utilisateur.role!=='user'">
+    <p class="text-center bg-warning text-light">
+        You are not admin access impossible to this part</p>
+</div>

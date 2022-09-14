@@ -1,0 +1,133 @@
+<h5 class="text-center  mt-3 mb-3"> Models testing </h5>
+<div *ngIf="role==='admin'||role==='superadmin'||role==='user'">
+  <!------------------------------------------------------------->
+  <!-------------------------Disponible dates------------------------------------>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4">
+            </div>
+          </div>
+          <div class="text-center text-danger" style="height: 350px">
+            <div class="text-danger text-center">
+              <button type="button" (click)="ngOnInit()" class="btn btn-danger mb-3"> <i class="bi bi-arrow-repeat"></i>
+              </button> &nbsp;&nbsp;
+              Select dates
+            </div>
+            <ngb-datepicker [(ngModel)]="selectDate" type ="text" (dateSelect)="onSelectDate()"></ngb-datepicker>
+          </div>
+        </div>
+      </div>
+      <!------------------------------------------------------------>
+      <!---------------------------Selected Dates--------------------------------->
+      <div *ngIf="dates.length!==0" class="col-md-8  mt-3 ">
+        <div class="card">
+          <p class="text-danger text-center mt-3">
+            Selected Dates
+          </p>
+          <div class="card-body">
+            <table class="table table-light ml-3">
+              <tbody>
+                <th class="text-danger align-middle" *ngIf="dates.length!==0">{{nbrDate()}} DATE(S) </th>
+                <th *ngFor="let p of dates| paginate:{id:'id',itemsPerPage:6,currentPage:page}; let i =index">
+                  <!-- {{p.day}}/{{p.month}}/{{p.year}} -->
+                  {{p|date:'d/M/yyyy'}}
+                  <button class="btn btn-white text-danger"
+                    (click)="onDeleteDate(i)"><i class="fa fa-trash"></i></button>
+                </th>
+              </tbody>
+            </table>
+          </div>
+          <div class="">
+            <div class="col-md-5 ml-3 text-center" *ngIf="dates.length>6">
+              <pagination-controls id="id" (pageChange)="page = $event"> </pagination-controls>
+            </div>
+          </div>
+          <!----------------------------------->
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div *ngIf="dates.length!==0">
+              <label for="idTypeTestSelect" class="form-label">Select a test Type</label>
+              <select class="form-select col-md-6 " type="text" id="idTypeTestSelect" (click)="InitSelectModel()"
+                [(ngModel)]="selectType" name="selectType">
+                <option >AUTO</option>
+                <option>GLOBAL</option>
+              </select>
+              <!--label for="idModelSelect" class="form-label ml-3">{{selectType}}</label-->
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row" *ngIf="selectType==='AUTO'">
+                <label for="algoc2">Select a model</label>
+                <select class="form-select" id="idModelSelect" name="selectModel" [(ngModel)]="selectModel">
+                  <option *ngFor="let f of (models); let i = index "  [value]="f.name">
+                    {{f.name}}  {{f.algoc1}}  {{f.hpc1}} {{f.algoc2}} {{f.hpc1}} {{f.algoc3}} {{f.hpc3}}
+                  </option>
+                </select>
+            </div>
+          </div>
+          <!---------------------------------->
+          <!--------------------------------------->
+        </div>
+        <!--------------------------------------->
+        <!---------------------------------->
+      </div>
+    </div>
+    <!------------------------------------------------------------>
+
+  </div>
+  <div class="container">
+    <div class="text-center">
+      <button *ngIf="(selectType==='GLOBAL')||(selectType==='AUTO' && selectModel!=='')"
+        class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#lunchModal" (click)="addTestModel()"> Lunch the
+        test ... &nbsp;
+        <i class="fa fa-rocket"></i></button>
+    </div>
+  </div>
+  <!------------------------------------------------------------->
+  <!-- Modal -->
+  <div class="modal fade bg-primary" id="lunchModal" tabindex="-1" aria-labelledby="lunchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h5 class="modal-title" id="lunchModalLabel">Lunching test by {{nameUser}} </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="bg-light">
+            <table class="table ml-3">
+              <tbody>
+                <th class="text-danger align-middle" *ngIf="dates.length!==0">{{nbrDate()}} SELECTED DATES </th>
+                <th *ngFor="let p of dates| paginate:{id:'id',itemsPerPage:6,currentPage:page}; let i =index">
+                  <!-- {{p.day}}/{{p.month}}/{{p.year}}  -->
+                  {{p|date:'yyyy/MM/dd'}}
+                </th>
+              </tbody>
+            </table>
+          </div>
+          <div class="">
+            <div class="col-md-5 ml-3 text-center" *ngIf="dates.length>6">
+              <pagination-controls id="id" (pageChange)="page = $event"> </pagination-controls>
+            </div>
+          </div>
+          <div *ngIf="selectType !==''">
+             <b class="text-danger ml-3"> TESTING TYPE: </b> {{selectType}}
+          </div>
+          <div *ngIf="selectModel !==''">
+             <b class="text-danger ml-3"> MODEL: </b> {{selectModel}}
+             <!-- {{stringModel(model)}} -->
+          </div>
+          <div >
+            <b class="text-danger ml-3"> Date: </b> {{testDate|date:'yyyy/MM/dd'}}
+            <!-- {{stringModel(model)}} -->
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------------------------>
+  <!------------------------------------------------------------->
+</div>

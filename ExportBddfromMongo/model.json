@@ -1,0 +1,70 @@
+[{
+  "_id": {
+    "$oid": "62c21eb359f7e178bfc07a5e"
+  },
+  "name": "SU Model",
+  "type": "Standard",
+  "user": {
+    "_id": {
+      "$oid": "629f5381407fa36860417026"
+    },
+    "name": "nabil",
+    "email": "superadmin@gmail.com",
+    "password": "superadmin123",
+    "role": "superadmin",
+    "bu": "Brest"
+  },
+  "algoc1": "KNN",
+  "algoc2": "KNN",
+  "algoc3": "LMP",
+  "hpc1": "Optimal",
+  "hpc2": "Optimal",
+  "hpc3": "Optimal",
+  "_class": "fr.SII.MongoCRUD.model.Model"
+},{
+  "_id": {
+    "$oid": "62c21ef659f7e178bfc07a5f"
+  },
+  "name": "Justine Model",
+  "type": "Custom",
+  "user": {
+    "_id": {
+      "$oid": "62ac2dc95d7f0e0bef431228"
+    },
+    "name": "Justine",
+    "email": "justine@gmail.com",
+    "password": "justine123",
+    "role": "user",
+    "bu": "Brest"
+  },
+  "algoc1": "KNN",
+  "algoc2": "CNN",
+  "algoc3": "CNN",
+  "hpc1": "Custom",
+  "hpc2": "Custom",
+  "hpc3": "Optimal",
+  "_class": "fr.SII.MongoCRUD.model.Model"
+},{
+  "_id": {
+    "$oid": "62c21f4759f7e178bfc07a60"
+  },
+  "name": "Florian Model",
+  "type": "Custom",
+  "user": {
+    "_id": {
+      "$oid": "62aae938e71ed838a631a1e9"
+    },
+    "name": "Florian",
+    "email": "florian@gmail.com",
+    "password": "florian123",
+    "role": "admin",
+    "bu": "Paris"
+  },
+  "algoc1": "KNN",
+  "algoc2": "Auto",
+  "algoc3": "CNN",
+  "hpc1": "Optimal",
+  "hpc2": "Optimal",
+  "hpc3": "Optimal",
+  "_class": "fr.SII.MongoCRUD.model.Model"
+}]

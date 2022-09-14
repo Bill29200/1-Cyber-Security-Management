@@ -1,0 +1,138 @@
+[{
+  "_id": {
+    "$oid": "62de55956aabc2572803eb26"
+  },
+  "dates": [
+    {
+      "$date": {
+        "$numberLong": "1656885600000"
+      }
+    },
+    {
+      "$date": {
+        "$numberLong": "1656972000000"
+      }
+    },
+    {
+      "$date": {
+        "$numberLong": "1657576800000"
+      }
+    }
+  ],
+  "testType": "AUTO",
+  "model": {
+    "_id": {
+      "$oid": "62c21eb359f7e178bfc07a5e"
+    },
+    "name": "SU Model",
+    "type": "Standard",
+    "user": {
+      "_id": {
+        "$oid": "629f5381407fa36860417026"
+      },
+      "name": "nabil",
+      "email": "superadmin@gmail.com",
+      "password": "superadmin123",
+      "role": "superadmin",
+      "bu": "Brest"
+    },
+    "algoc1": "KNN",
+    "algoc2": "KNN",
+    "algoc3": "LMP",
+    "hpc1": "Optimal",
+    "hpc2": "Optimal",
+    "hpc3": "Optimal"
+  },
+  "testDate": {
+    "$date": {
+      "$numberLong": "1658700000000"
+    }
+  },
+  "user": {
+    "_id": {
+      "$oid": "629f5381407fa36860417026"
+    },
+    "name": "nabil",
+    "email": "superadmin@gmail.com",
+    "password": "superadmin123",
+    "role": "superadmin",
+    "bu": "Brest"
+  },
+  "_class": "fr.SII.MongoCRUD.model.TestModel"
+},{
+  "_id": {
+    "$oid": "62de55fc6aabc2572803eb27"
+  },
+  "dates": [
+    {
+      "$date": {
+        "$numberLong": "1656972000000"
+      }
+    },
+    {
+      "$date": {
+        "$numberLong": "1656885600000"
+      }
+    },
+    {
+      "$date": {
+        "$numberLong": "1656799200000"
+      }
+    },
+    {
+      "$date": {
+        "$numberLong": "1656540000000"
+      }
+    },
+    {
+      "$date": {
+        "$numberLong": "1656626400000"
+      }
+    },
+    {
+      "$date": {
+        "$numberLong": "1656712800000"
+      }
+    }
+  ],
+  "testType": "AUTO",
+  "model": {
+    "_id": {
+      "$oid": "62c21eb359f7e178bfc07a5e"
+    },
+    "name": "SU Model",
+    "type": "Standard",
+    "user": {
+      "_id": {
+        "$oid": "629f5381407fa36860417026"
+      },
+      "name": "nabil",
+      "email": "superadmin@gmail.com",
+      "password": "superadmin123",
+      "role": "superadmin",
+      "bu": "Brest"
+    },
+    "algoc1": "KNN",
+    "algoc2": "KNN",
+    "algoc3": "LMP",
+    "hpc1": "Optimal",
+    "hpc2": "Optimal",
+    "hpc3": "Optimal"
+  },
+  "testDate": {
+    "$date": {
+      "$numberLong": "1658700000000"
+    }
+  },
+  "user": {
+    "_id": {
+      "$oid": "629f5381407fa36860417026"
+    },
+    "name": "nabil",
+    "email": "superadmin@gmail.com",
+    "password": "superadmin123",
+    "role": "superadmin",
+    "bu": "Brest"
+  },
+  "_class": "fr.SII.MongoCRUD.model.TestModel"
+}]

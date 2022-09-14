@@ -1,0 +1,201 @@
+<!------------------------------------------------------------->
+
+<div class="mb-3" *ngIf="role==='admin'||role==='superadmin'">
+	
+	<!---------------------------------->
+	<div class="container-fluid mb-3">		
+			<div class="row mt-3">
+				<div class="col-md-4">					
+					
+					 <button type="button" class="btn btn-success" data-bs-toggle="modal" (click)="initAdd()"
+						data-bs-target="#ModalAddAlgo">
+						<i class="fa fa-plus"></i>
+					</button>
+					&nbsp;
+					<button *ngIf="(getNbAlgo(1)+getNbAlgo(2)+getNbAlgo(3)+getNbAlgo(4))!==0" class="btn btn-danger"
+						(click)="onSupprimerAll()">
+						<i class="fa fa-trash"></i> All <span
+							class="badge badge-light">{{getNbAlgo(1)+getNbAlgo(2)+getNbAlgo(3)+getNbAlgo(4)}}</span>
+					</button>
+					
+				   <!--  -->	
+				</div>
+				<div class="col-md-4">
+					<h5 class="text-center mt-3">Algorithmes</h5>
+				</div>
+				<div class="col-md-4 mt-3 ">
+					<!-- Research feild -->
+					<form class="form-inline my-3 my-lg-0 text-success">
+						<input type="search" (ngModelChange)="search(key.value)" #key="ngModel" ngModel
+						 name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search Algorithms..." required>
+					</form>			 
+				</div>				
+			</div>		
+	</div>
+	<!-------------------------------------->
+	<div class="container-fluid">
+		<div class="row">
+			<!---------First layer--------------------------->
+			<div class="col-md-4 ">
+				<div class="card bg-danger">
+					<div class="card-header ">
+						<h5 class="text-light text-center">Log prediction layer</h5>
+					</div>
+					<div class="card-body bg-white">
+						<p class="card-text">
+						<table class="table table-striped" >
+							<thead class="table-danger">
+								<tr >
+									<th>ALGO</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr
+									*ngFor="let p of tablAlgoC1| paginate:{id:'c1',itemsPerPage:3,currentPage:pagec1};let ic1 = index">
+									<td>{{p.name}}</td>
+									<td>
+										<button class="btn btn-danger" (click)="onEnleverAlgo(p)">
+											<i class="fa fa-trash"></i>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="card-footer bg-white">
+						<div class="ml-3" *ngIf="tablAlgoC1.length >3">							
+								<pagination-controls  id="c1" (pageChange)="pagec1 = $event"> </pagination-controls>
+							</div>
+					</div>
+				</div>
+			</div>
+			<!---------Fin First layer--------------------------->
+			<!---------Second layer--------------------------->
+			<div class="col-md-4 ">
+				<div class="card bg-warning">
+					<div class="card-header ">
+						<h5 class="text-light text-center">Anomaly detection layer</h5>
+					</div>
+					<div class="card-body bg-white">
+						<p class="card-text">
+						<table class="table table-striped">
+							<thead class="table-warning">
+								<tr>
+									<th>ALGO</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr
+									*ngFor="let p of tablAlgoC2| paginate:{id:'c2',itemsPerPage:3,currentPage:pagec2};let ic2 = index">
+									<td>{{p.name}}</td>
+									<td>
+										<button class="btn btn-danger" 	(click)="onEnleverAlgo(p)"> 
+											<i class="fa fa-trash"></i>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="card-footer bg-white">
+						<div class="ml-3" *ngIf="tablAlgoC2.length >3">							
+								<pagination-controls  id="c2" (pageChange)="pagec2 = $event"> </pagination-controls>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!---------Fin second layer--------------------------->
+			<!---------Third layer--------------------------->
+			<div class="col-md-4 ">
+				<div class="card bg-primary">
+					<div class="card-header ">
+						<h5 class="text-light text-center">Attack classification layer</h5>
+					</div>
+					<div class="card-body bg-white">
+						<p class="card-text">
+						<table class="table table-striped">
+							<thead class="table-primary">
+								<tr>
+									<th>ALGO</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr
+									*ngFor="let p of tablAlgoC3| paginate:{id:'c3',itemsPerPage:3,currentPage:pagec3};let ic3 = index">
+									<td>{{p.name}}</td>
+									<td>
+										<button class="btn btn-danger" (click)="onEnleverAlgo(p)"> 
+											<i class="fa fa-trash"></i>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="card-footer bg-white">
+						<div class="ml-3"*ngIf="tablAlgoC3.length >3">							
+								<pagination-controls  id="c3" (pageChange)="pagec3 = $event"> </pagination-controls>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!---------Fin third layer--------------------------->
+		</div>
+	</div>
+<!------------------------------------------------------------->
+<!-- ModalAddAlgo -->
+<div class="modal fade" id="ModalAddAlgo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">New Algorithme</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12 mt-3 ">
+						<label for="nomAlgo" class="form-label">Algorithme name</label>
+						<input type="text " id="nomAlgo" aria-label="nomAlgo" [(ngModel)]="nomAlgo"
+							placeholder="Algorithme name" class="form-control ">
+						<label class="form-label mt-3">Check Layers algorithme</label>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-3  ml-3 mr-3">
+									<input class="form-check-input bg-danger" type="checkbox" [(ngModel)]="ExisteInC1">
+									<label class="form-check-label ">Log prediction</label>
+								</div>
+								<div class="col-md-3 ml-3 mr-3">
+									<input class="form-check-input bg-warning" type="checkbox" [(ngModel)]="ExisteInC2">
+									<label class="form-check-label  ">Anomaly detection</label>
+								</div>
+								<div class="col-md-3 ml-3 mr-3">
+									<input class="form-check-input bg-primary  " type="checkbox" [(ngModel)]="ExisteInC3">
+									<label class="form-check-label  ">Attack classification</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-success" (click)="onAjouterAlgo()" data-bs-dismiss="modal"> <i
+						class="fa fa-plus"></i></button>
+			</div>
+		</div>
+	</div>
+</div>
+<!------------------------------------------------------------->
+
+<!------------------------------------------------------------->
+<div class=bg-succes *ngIf="role!=='admin'&& role!=='superadmin'">
+
+	<p class="text-center bg-warning text-light">
+		You are not admin access impossible to this part</p>
+</div>
+<!-- -->
+<!-- -->
+<!-- -->

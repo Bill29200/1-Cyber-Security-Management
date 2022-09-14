@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "629f5381407fa36860417026"
+  },
+  "name": "nabil",
+  "email": "superadmin@gmail.com",
+  "password": "superadmin123",
+  "role": "superadmin",
+  "bu": "Brest",
+  "_class": "fr.SII.MongoCRUD.model.Person"
+},{
+  "_id": {
+    "$oid": "62a20335e9b1a753f9d48b60"
+  },
+  "name": "karim benzima",
+  "email": "karim@gmail.com",
+  "password": "karim123",
+  "role": "admin",
+  "bu": "Paris",
+  "_class": "fr.SII.MongoCRUD.model.Person"
+},{
+  "_id": {
+    "$oid": "62aae938e71ed838a631a1e9"
+  },
+  "name": "Florian",
+  "email": "florian@gmail.com",
+  "password": "florian123",
+  "role": "admin",
+  "bu": "Paris",
+  "_class": "fr.SII.MongoCRUD.model.Person"
+},{
+  "_id": {
+    "$oid": "62ac2dc95d7f0e0bef431228"
+  },
+  "name": "Justine",
+  "email": "justine@gmail.com",
+  "password": "justine123",
+  "role": "user",
+  "bu": "Brest",
+  "_class": "fr.SII.MongoCRUD.model.Person"
+}]

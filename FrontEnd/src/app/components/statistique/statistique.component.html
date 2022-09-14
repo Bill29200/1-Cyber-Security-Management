@@ -1,0 +1,224 @@
+<div class="container-fluid">
+    <div class="row mt-5">
+
+        <div class="col-md-5">
+            <!-- <button class="btn btn-primary"  (click)="groupedCsvJson()">Load
+            </button>
+            &nbsp; -->
+            <button class="btn btn-warning" data-bs-toggle="collapse" href="#logCollaps" role="button"
+                aria-expanded="false" aria-controls="logCollaps" (click)="groupedCsvJson()">LOG
+            </button>
+            &nbsp;
+            <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#pcapCollaps"
+                aria-expanded="false" aria-controls="pcapCollaps">PCAP
+            </button>
+            &nbsp;
+            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse"
+                aria-expanded="false" aria-controls="logCollaps pcapCollaps">Both
+                Stat
+            </button>
+        </div>
+        <div class="col-md-2">
+            <h5 class="text-center  mt-3 mb-3 text-primary"> Statistics</h5>
+        </div>
+        <div class="col-md-3 ">
+        </div>
+    </div>
+</div>
+<!------------------------------------------------------------->
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="collapse multi-collapse" id="logCollaps">
+                        <div>
+                            <!----------------------------------------------------------------------------------------->
+                            <!----------------------------------------------------------------------------------------->
+                            <!----------------------------------------------------------------------------------------->
+                            <div class="container">
+                                <div class="row">
+
+                                    <div *ngIf="logStats.length!==0" class="col-md-12">
+                                        <div>
+                                            <div style="overflow: auto;">
+                                               
+                                                <table class="table table-warning ">
+                                                    <tbody>
+                                                        <th class="align-middle" *ngIf="logStats.length!==0">
+                                                            {{logStats.length}} Dates </th>
+                                                        <th
+                                                            *ngFor="let p of logStats; let i =index">
+                                                            <label class="btn-outline-dark" ngbButtonLabel>
+                                                                <input type="checkbox" class="btn-check" ngbButton
+                                                                    [(ngModel)]="btnsLog[i]" (click)="onChangeLog(i)">
+                                                                <!-- {{p.date|date:'d/M/yyyy'}} -->
+                                                                {{p.date}}
+                                                            </label>
+                                                        </th>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!----------------------------------------------------------------------------------------->
+                                <!----------------------------------------------------------------------------------------->
+                                <!----------------------------------------------------------------------------------------->
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <!---------------------------------------------------------------->
+                                                    <div
+                                                        class="chart w-50 position-relative top-0 start-50 translate-middle-x">
+                                                        <canvas baseChart [data]="dataGraphLog" [type]="typeGraphLog"
+                                                            [options]="optionGraphLog">
+                                                        </canvas>
+                                                    </div>
+
+                                                    <!---------------------------------------------------------------->
+                                                </div>
+                                                <div class="col-md-6 ">
+                                                    <!--------------------------------------------------------------->
+                                                    <table class="table table-striped">
+                                                        <thead class="table">
+                                                            <tr>
+                                                                <th>Nb Log</th>
+                                                                <th class="text-danger">BENIGN</th>
+                                                                <th class="text-primary">Dos Hulk</th>
+                                                            </tr>
+                                                       </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>{{nbLog}}</td>
+                                                                <td class="text-danger">{{nbBenign}}</td>
+                                                                <td class="text-primary">{{nbDos}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!--------------------------------------------------------------->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!----------------------------------------------------------------------------------------->
+                            </div>
+                        </div>
+                    </div>
+                    &nbsp;
+                    <div class="col-md-12">
+                        <div class="collapse multi-collapse" id="pcapCollaps">
+                            <div>
+                                <!----------------------------------------------------------------------------------------->
+                                <!----------------------------------------------------------------------------------------->
+                                <!----------------------------------------------------------------------------------------->
+                                <div class="container">
+                                    <div class="row">
+                                        <div *ngIf="pcapStats.length!==0" class="col-md-12">
+                                            <div>
+                                                <div style="overflow: auto;">
+                                                    <!-- <div class="col-md-5 ml-3 text-info" *ngIf="pcapStats.length>6">
+                                                        <pagination-controls id="id" (pageChange)="pagePcap = $event">
+                                                        </pagination-controls>
+                                                    </div> -->
+                                                    <table class="table table-info">
+                                                        <tbody>
+                                                            <th class="align-middle" *ngIf="pcapStats.length!==0">
+                                                                {{pcapStats.length}} PCAP</th>
+                                                            <th
+                                                                *ngFor="let p of pcapStats; let i =index">
+                                                                <label class="btn-outline-dark" ngbButtonLabel>
+                                                                    <input type="checkbox" class="btn-check" ngbButton
+                                                                        [(ngModel)]="btnsPcap[i]"
+                                                                        (click)="onChangePcap(i)">
+                                                                    {{p.date|date:'d/M/yyyy'}}
+                                                                </label>
+                                                            </th>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!----------------------------------------------------------------------------------------->
+                                    <!----------------------------------------------------------------------------------------->
+                                    <!----------------------------------------------------------------------------------------->
+                                    <div class="container-fluid ">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <div
+                                                            class="chart w-50 position-relative top-0 start-50 translate-middle-x">
+                                                            <canvas baseChart [data]="dataGraphPcap"
+                                                                [type]="typeGraphPcap" [options]="optionGraphPcap">
+                                                            </canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <!----------------------------------------------------------->
+                                                        <table class="table table-striped">
+                                                            <thead class="table">
+                                                                <tr>
+                                                                    <th>Nb@Ip</th>
+                                                                    <th>NbProtocol</th>
+                                                                    <th>NbPaquet</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>{{nbAdrIp}}</td>
+                                                                    <td>{{nbProtocol}}</td>
+                                                                    <td>{{nbPaquet}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <thead class="table">
+                                                                <tr>
+                                                                    <th class="text-danger">ddos</th>
+                                                                    <th class="text-primary">ddos</th>
+                                                                    <th class="text-warning">webAttack</th>
+                                                                    <th class="text-secondary">benign</th>
+                                                                    <th class="text-success">other</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-danger">{{ddos}}</td>
+                                                                    <td class="text-primary">{{dos}}</td>
+                                                                    <td class="text-warning">{{webAttack}}</td>
+                                                                    <td class="text-secondary">{{benign2}}</td>
+                                                                    <td class="text-success">{{other}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!----------------------------------------------------------->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!----------------------------------------------------------------------------------------->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+
+        </div>
+
+    </div>
+</div>

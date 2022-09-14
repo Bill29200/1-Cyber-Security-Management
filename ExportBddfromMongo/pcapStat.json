@@ -1,0 +1,163 @@
+[{
+  "_id": {
+    "$oid": "62bae9a1c738a276da7782b6"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1654984800000"
+    }
+  },
+  "nbAdrIp": 11,
+  "nbProtocol": 21,
+  "nbPaquet": 31,
+  "ddos": 41,
+  "dos": 51,
+  "webAttack": 61,
+  "benign": 71,
+  "other": 81,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+},{
+  "_id": {
+    "$oid": "62bae9b6c738a276da7782b7"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1656367200000"
+    }
+  },
+  "nbAdrIp": 1,
+  "nbProtocol": 2,
+  "nbPaquet": 3,
+  "ddos": 4,
+  "dos": 5,
+  "webAttack": 6,
+  "benign": 7,
+  "other": 8,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+},{
+  "_id": {
+    "$oid": "62c588da9ed8a8383a039404"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1657058400000"
+    }
+  },
+  "nbAdrIp": 6,
+  "nbProtocol": 6,
+  "nbPaquet": 6,
+  "ddos": 6,
+  "dos": 6,
+  "webAttack": 6,
+  "benign": 6,
+  "other": 6,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+},{
+  "_id": {
+    "$oid": "62c588ee9ed8a8383a039405"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1657144800000"
+    }
+  },
+  "nbAdrIp": 7,
+  "nbProtocol": 7,
+  "nbPaquet": 7,
+  "ddos": 7,
+  "dos": 7,
+  "webAttack": 7,
+  "benign": 7,
+  "other": 7,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+},{
+  "_id": {
+    "$oid": "62c589299ed8a8383a039406"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1656885600000"
+    }
+  },
+  "nbAdrIp": 4,
+  "nbProtocol": 4,
+  "nbPaquet": 4,
+  "ddos": 4,
+  "dos": 4,
+  "webAttack": 4,
+  "benign": 4,
+  "other": 4,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+},{
+  "_id": {
+    "$oid": "62c812073ed8a24bb53db20d"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1658095200000"
+    }
+  },
+  "nbAdrIp": 5,
+  "nbProtocol": 4,
+  "nbPaquet": 8,
+  "ddos": 14,
+  "dos": 14,
+  "webAttack": 22,
+  "benign": 14,
+  "other": 2,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+},{
+  "_id": {
+    "$oid": "62c8120f3ed8a24bb53db20e"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1657490400000"
+    }
+  },
+  "nbAdrIp": 5,
+  "nbProtocol": 4,
+  "nbPaquet": 8,
+  "ddos": 14,
+  "dos": 14,
+  "webAttack": 22,
+  "benign": 14,
+  "other": 2,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+},{
+  "_id": {
+    "$oid": "62c812143ed8a24bb53db20f"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1652220000000"
+    }
+  },
+  "nbAdrIp": 5,
+  "nbProtocol": 4,
+  "nbPaquet": 8,
+  "ddos": 14,
+  "dos": 14,
+  "webAttack": 22,
+  "benign": 14,
+  "other": 2,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+},{
+  "_id": {
+    "$oid": "62c8121a3ed8a24bb53db210"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1641855600000"
+    }
+  },
+  "nbAdrIp": 5,
+  "nbProtocol": 4,
+  "nbPaquet": 8,
+  "ddos": 14,
+  "dos": 14,
+  "webAttack": 22,
+  "benign": 14,
+  "other": 2,
+  "_class": "fr.SII.MongoCRUD.model.PcapStat"
+}]

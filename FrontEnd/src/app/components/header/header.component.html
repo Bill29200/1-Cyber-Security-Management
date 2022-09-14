@@ -1,0 +1,154 @@
+<div class="container-fluid bg-white">
+    <div class="row">
+        <!----------------------------------------------------------------------------------------->
+         <!----------------------------------------------------------------------------------------->
+          <!----------------------------------------------------------------------------------------->
+        <!--LOGO----------------------------------------------------------------------------------->
+        <div class="col-md-4 text-center logo" >
+            <a class="nav-link logo" routerLink="./about">
+                <img class="rounded btn " alt="LOGO Preview" src="assets/img/logo1.png" width="120px"
+                    data-holder-rendered="true" />
+            </a>
+        </div>
+        <!--TITRE----------------------------------------------------------------------------------->
+        <div class="col-md-3 mt-3">
+            <h1 class="titre">
+                <img alt="titre Preview" src="assets/img/titre1.png" width="300px"/>
+            </h1>
+        </div>
+        <!--COMPTE----------------------------------------------------------------------------------->
+        <div class="col-md-5 text-danger mt-3 mb-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-9 ">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+
+                                        <div class="col-md-6 text-end">
+                                            <div>
+                                                <div class="align-buttom text-dark text-center">{{name}} </div> &nbsp;
+                                                <div class="align-top text-uppercase fw-bold text-center">{{role}} </div>
+                                                <p *ngIf="role===''">not authenticated !! </p>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="bil col-md-5 ">
+                                            <div class="picture1">
+                                                <div class="col-md-2 text-start align-middle mr-3">
+                                                    <img scr="assets/img.as.png" *ngIf="role==='superadmin'"
+                                                        class="rounded" alt="LOGO Preview" src="assets/img/sa.png"
+                                                        height="70px" width="70px" />
+                                                    <img scr="assets/img.as.png" *ngIf="role==='admin'" class="rounded"
+                                                        alt="LOGO Preview" src="assets/img/ad.png" height="70px"
+                                                        width="70px" />
+                                                    <img scr="assets/img.as.png" *ngIf="role==='user'" class="rounded"
+                                                        alt="LOGO Preview" src="assets/img/us.png" height="70px"
+                                                        width="70px" />
+
+                                                </div>
+                                            </div>
+                                            <div class="picture2">
+                                                <div class="col-md-1 text-end align-middle" *ngIf="role!==''">
+                                                    <button class=" btn btn-danger nav-item text-white"
+                                                        (click)="logout()">
+                                                        <i class="fas fa-sign-out"></i>
+                                                    </button>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-1 text-end align-middle" *ngIf="role===''">
+                                            <button class=" btn btn-danger nav-item text-white" routerLink="/login">
+                                                <i class="fas fa-sign-in"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--NavBAR----------------------------------------------------------------------------------->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container">
+        <div class="text-warning">Cyber Security Management</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" routerLinkActive="active" >
+                    <a  class="nav-link" routerLink="./home" >Home
+                        <span class="sr-only">(current)</span>
+
+                    </a>
+                </li>                
+                <li >
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                </li>                
+                <li class="nav-item" routerLinkActive="active" *ngIf="role==='superadmin'">
+                    <a *ngIf="role==='superadmin'" class="nav-link text-danger" routerLink="./gerer-compte">Comptes</a>
+                </li>
+                <!---->
+                <li class="nav-item dropdown "*ngIf="role==='admin'|| role==='superadmin'|| role==='user'">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Models 
+                    </a>
+                    <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+
+                        <li class="dropdown-item text-danger" *ngIf="role==='admin'|| role==='superadmin'">
+                            <a *ngIf="role==='admin'|| role==='superadmin'" class="nav-link text-danger"
+                                routerLink="./gerer-modele/algorithme">Algorithms</a>
+                        </li>
+                        <li class="dropdown-item" *ngIf="role==='admin'|| role==='superadmin'|| role==='user'">
+                            <a *ngIf="role==='admin'|| role==='superadmin'|| role==='user'" class="nav-link text-warning"
+                                routerLink="./gerer-modele">Models</a>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-item" *ngIf="role==='admin'|| role==='superadmin'|| role==='user'">
+                            <a class="dropdown-item text-light" routerLink="./tester-modeles" class="nav-link text-warning">Models Testing </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!---->
+                
+                <li class="nav-item" *ngIf="role==='admin'|| role==='superadmin'|| role==='user'" routerLinkActive="active">
+                    <a class="nav-link" routerLink="./statistique">Statistics</a>
+                </li>
+
+                <li class="nav-item" *ngIf="role==='admin'|| role==='superadmin'|| role==='user'" routerLinkActive="active">
+                    <a class="nav-link" routerLink="./historique-resultats">Results history</a>
+
+                </li>
+                <li class="nav-item" *ngIf="role==='admin'|| role==='superadmin'|| role==='user'">
+                    <a class="nav-link" routerLink="./detection">Detection</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="./about">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--NavBAR----------------------------------------------------------------------------------->

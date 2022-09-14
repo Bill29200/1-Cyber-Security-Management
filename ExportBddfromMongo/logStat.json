@@ -1,0 +1,118 @@
+[{
+  "_id": {
+    "$oid": "62baf44bc7c5f12e369cacd4"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1667343600000"
+    }
+  },
+  "nbLog": 15,
+  "nbAnomalie": 20,
+  "nbBenign": 22,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+},{
+  "_id": {
+    "$oid": "62c5898b9ed8a8383a039407"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1656712800000"
+    }
+  },
+  "nbLog": 2,
+  "nbAnomalie": 2,
+  "nbBenign": 2,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+},{
+  "_id": {
+    "$oid": "62c589989ed8a8383a039408"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1656799200000"
+    }
+  },
+  "nbLog": 3,
+  "nbAnomalie": 3,
+  "nbBenign": 3,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+},{
+  "_id": {
+    "$oid": "62c589ac9ed8a8383a039409"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1656885600000"
+    }
+  },
+  "nbLog": 4,
+  "nbAnomalie": 4,
+  "nbBenign": 4,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+},{
+  "_id": {
+    "$oid": "62c589be9ed8a8383a03940a"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1656972000000"
+    }
+  },
+  "nbLog": 5,
+  "nbAnomalie": 5,
+  "nbBenign": 5,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+},{
+  "_id": {
+    "$oid": "62c8131d3ed8a24bb53db211"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1657231200000"
+    }
+  },
+  "nbLog": 15,
+  "nbAnomalie": 8,
+  "nbBenign": 5,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+},{
+  "_id": {
+    "$oid": "62c813293ed8a24bb53db212"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1659132000000"
+    }
+  },
+  "nbLog": 11,
+  "nbAnomalie": 2,
+  "nbBenign": 2,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+},{
+  "_id": {
+    "$oid": "62c813373ed8a24bb53db213"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1652220000000"
+    }
+  },
+  "nbLog": 2,
+  "nbAnomalie": 4,
+  "nbBenign": 4,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+},{
+  "_id": {
+    "$oid": "62c813473ed8a24bb53db214"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1652479200000"
+    }
+  },
+  "nbLog": 12,
+  "nbAnomalie": 3,
+  "nbBenign": 2,
+  "_class": "fr.SII.MongoCRUD.model.LogStat"
+}]

@@ -1,0 +1,235 @@
+<div *ngIf="roleActuel!=='superadmin'">
+    <p class="text-center bg-danger text-light">
+        Only super admin can access to this part of application</p>
+</div>
+<div *ngIf="roleActuel==='superadmin'">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-3">
+                
+            </div>
+            <div class="col-md-6">
+                <h1 class="text-center text-danger mt-3 mb-3">Comptes</h1>
+            </div>
+            <div class="col-md-3">
+                <!-- Research feild -->
+                <form class="form-inline mt-3 my-lg-0">
+                    <input type="search" (ngModelChange)="searchPerson(key.value)" #key="ngModel" ngModel
+                     name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search perrson..." required>
+                </form>
+                <!--  -->
+            </div>
+            
+        </div>
+    </div>
+    <!---->
+<div class="container">
+    <div class="row text-center">
+        <div class="col-4 text-center">
+            <button type="button" class="btn btn-success mt-5" data-bs-toggle="modal" data-bs-target="#exampleModalAdd">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="col-4 mb-3" *ngFor="let p of persons;let i = index;">
+
+            <div class="card text-center shadow-hover rounded-3 ">
+
+                <div class=" text-center bg-image hover-overlay ripple " data-mdb-ripple-color="light">
+
+                    <a class=" btn btn-outline-danger col-md-12 " (click)=" onCharger(i)" data-bs-toggle="modal"
+                        data-bs-target="#ModalUpdate">
+                        <div class="row">
+                            <h5 class="text-dark text-center mt-3 mb-3 ">
+                                <strong>{{p.name}} </strong>
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4  mb-3" *ngIf="p.role ==='superadmin'">
+                                <img class="rounded-circle avatar" alt="poster" src="assets/img/sa.png" />
+                            </div>
+                            <div class="col-md-4  mb-3" *ngIf="p.role ==='admin'">
+                                <img class="rounded-circle avatar" alt="poster" src="assets/img/ad.png" />
+                            </div>
+                            <div class="col-md-4  mb-3" *ngIf="p.role ==='user'">
+                                <img class="rounded-circle avatar" alt="poster" src="assets/img/us.png" />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="col-md-4 text-light mb-3 "> 
+                                    <img class="rounded w-100 h-100"  src="assets/img/puce.png" />
+                                </div> 
+                            </div>
+                            <div class="col-md-6">
+
+                                <p class="text-dark mr-3 text-start">
+                                    <strong>{{p.bu}}</strong>
+                                </p>
+                                <p class="text-dark mr-3 text-start mb-3">
+                                   {{p.role}}
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </a>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade text-start" id="ModalUpdate" 
+                index="-1" aria-labelledby="ModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="ModalLabel">{{name1}} compte detail</h5>
+                                                    
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!----->
+                                                    <label for="name1" class="form-label">Name</label>
+                                                    <input type="text" aria-label="Name" [(ngModel)]="name1"
+                                                        placeholder="Name" class="form-control mb-3 ">
+                                                    <label for="bu1" class="form-label">BU/Unite</label>
+                                                    <input type="text" aria-label="Bu" [(ngModel)]="bu1"
+                                                            placeholder="Bu/Unite" class="form-control mb-3">
+                                                    <!----->
+                                                    <label for="role1" class="form-label">Role</label>
+                                                    <div class="input-group mb-3">
+                                                       
+                                                        <select class="form-select mb-3" type="text" [(ngModel)]="role1">
+    
+                                                            <option value="superadmin">Super administrator</option>
+                                                            <option value="admin">Administrator</option>
+                                                            <option value="user" selected>User</option>
+                                                        </select>
+                                                        <!---->
+                                                        <span>
+                                                            <div class="col-md-4 text-light mb-3" *ngIf="role1 ==='superadmin'">
+                                                                <img class="rounded-circle avatar" alt="poster" src="assets/img/sa.png" />
+                                                            </div>
+                                                            <div class="col-md-4 text-light mb-3" *ngIf="role1 ==='admin'">
+                                                                <img class="rounded-circle avatar" alt="poster" src="assets/img/ad.png" />
+                                                            </div>
+                                                            <div class="col-md-4 text-light mb-3" *ngIf="role1 ==='user'">
+                                                                <img class="rounded-circle avatar" alt="poster" src="assets/img/us.png" />
+                                                            </div>
+                                                        </span>&nbsp; &nbsp;    
+                                                    </div>
+                                                    <button class="btn btn text-dark btn-outline-danger mb-3"
+                                                            type="button" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseMoreDetail" aria-expanded="false"
+                                                            aria-controls="collapseWidthExample" (click)="expr()">{{expression}}
+                                                    </button>
+                                                    <div class="collapse collapse-horizontal " id="collapseMoreDetail">
+                                                    <div class="card card-body bg-danger">
+                                                        <label for="email1" class="form-label text-light">Email</label>
+                                                    <input type="email" aria-label="Email" [(ngModel)]="email1"
+                                                        placeholder="E-mail" class="form-control mb-3">
+                                                    <label for="password1" class="form-label text-light">Password</label>
+                                                    <div class="input-group mb-3">
+                                                        <input [type]="fieldTextType ? 'text' : 'password'"
+                                                            aria-label="Password" [(ngModel)]="password1"
+                                                            placeholder="Password" class="form-control">
+                                                        &nbsp; &nbsp;
+                                                        <span>
+                                                            <i class="text-white fa" [ngClass]="{
+                                                                  'fa-eye-slash': !fieldTextType,
+                                                                  'fa-eye': fieldTextType
+                                                                }" (click)="toggleFieldTextType()"></i>
+                                                        </span>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                                                                      
+                                                    
+                                                </div>
+                                                <div class="modal-footer"> 
+                                                     <button *ngIf="name1!=='superadmin'&&role1!=='superadmin'" type="button" class="btn btn-danger" (click)="onSuppr(id1)"
+                                                     data-bs-dismiss="modal">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                    <button *ngIf="name1!=='superadmin'&&role1!=='superadmin'" type="button" class="btn btn-primary" (click)="onModifier(id1)"
+                                                        data-bs-dismiss="modal">
+                                                        <i class="fa fa-save"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                <!---->
+            </div>
+        </div>
+        
+<!--Modal Ajout-->
+<div class="modal fade text-start" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" aria-label="Name" [(ngModel)]="name" placeholder="Name" class="form-control mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" aria-label="Email" [(ngModel)]="email" placeholder="E-mail"
+                    class="form-control mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group mb-3">
+                    <input [type]="fieldTextType ? 'text' : 'password'" aria-label="Password" [(ngModel)]="password"
+                        placeholder="Password" class="form-control">
+                    &nbsp; &nbsp;
+                    <span>
+                        <i class="text-danger fa" [ngClass]="{
+                         'fa-eye-slash': !fieldTextType,
+                         'fa-eye': fieldTextType
+                       }" (click)="toggleFieldTextType()"></i>
+                    </span>
+                </div>
+                <!---->
+                <label for="role1" class="form-label">Select a role</label>
+                                                    <div class="input-group mb-3">
+                                                       
+                                                        <select class="form-select mb-3" type="text" [(ngModel)]="role">
+    
+                                                            <option value="superadmin">Super administrator</option>
+                                                            <option value="admin">Administrator</option>
+                                                            <option value="user" selected>User</option>
+                                                        </select>
+                                                        <!---->
+                                                        <span>
+                                                            <div class="col-md-4 text-light mb-3" *ngIf="role ==='superadmin'">
+                                                                <img class="rounded-circle avatar" alt="poster" src="assets/img/sa.png" />
+                                                            </div>
+                                                            <div class="col-md-4 text-light mb-3" *ngIf="role ==='admin'">
+                                                                <img class="rounded-circle avatar" alt="poster" src="assets/img/ad.png" />
+                                                            </div>
+                                                            <div class="col-md-4 text-light mb-3" *ngIf="role ==='user'">
+                                                                <img class="rounded-circle avatar" alt="poster" src="assets/img/us.png" />
+                                                            </div>
+                                                            <div class="col-md-4 text-light mb-3" *ngIf="role ===''">
+                                                                <img class="rounded-circle avatar" alt="poster" src="assets/img/non.png" />
+                                                            </div>
+                                                        </span>&nbsp; &nbsp;    
+                                                    </div>
+                <!---->
+                <label for="bu" class="form-label">BU/Unite</label>
+                <input type="text" aria-label="Bu" [(ngModel)]="bu" placeholder="Bu/Unite" class="form-control">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" (click)="onAjouter()" data-bs-dismiss="modal">
+                    <i class="fa fa-save"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Fin modal Ajout-->
+    </div>
+</div>
+</div>
+
+   
